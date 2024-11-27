@@ -1,0 +1,8 @@
+Developed a web application for renting or exchanging properties, where users can log in, register, and browse general
+property listings with filtering options such as start and end dates, province, locality, and category. Users can view
+individual properties, book based on availability or exchange, and create listings with availability details. The
+application includes a virtual currency system for transactions, allowing users to pay for bookings or exchanges.
+Additionally, users can view their reservations, manage their properties, and accept or deny bookings and exchanges. A
+Premium version is available for purchase, and the admin mode allows for the editing, viewing, and deletion of various
+entities, including categories, property availability, localities, and more.
+(PHP-Symphony, Javascript, Typescript, SQL, HTML, CSS, BOOTSTRAP)
