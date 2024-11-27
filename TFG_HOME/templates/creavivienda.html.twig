@@ -1,0 +1,620 @@
+<html class="wide wow-animation" lang="en">
+
+<head>
+  <title>Home</title>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport"
+    content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <link rel="icon" href="{{ asset('site/images/favicon.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" type="text/css"
+    href="//fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800%7CPoppins:300,400,700">
+  <link rel="stylesheet" href="{{ asset('site/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('site/css/fonts.css') }}">
+  <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" id="main-styles-link">
+
+
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script type="text/javascript" src="{{asset('js/programacion.js')}}"></script>
+
+
+  <script type="text/javascript" src="{{asset('js/ProvinciaLocalidad.js')}}"></script>
+
+  <script type="text/javascript" src="{{asset('js/categorias.js')}}"></script>
+
+
+
+
+  <style>
+    .ie-panel {
+      display: none;
+      background: #212121;
+      padding: 10px 0;
+      box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, .3);
+      clear: both;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    html.ie-10 .ie-panel,
+    html.lt-ie-10 .ie-panel {
+      display: block;
+    }
+  </style>
+
+
+
+</head>
+
+
+
+
+
+
+
+<body>
+  <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img
+        src="{{ asset('site/images/ie8-panel/warning_bar_0000_us.jpg')}}" height="42" width="820"
+        alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a>
+  </div>
+  <div class="preloader">
+    <div class="preloader-logo">
+      <img src="{{ asset('site/images/logo-default-151x44.png') }}" alt="" width="151" height="44"
+        srcset="{{ asset('site/images/logo-default-151x44.png') }} 2x" />
+    </div>
+
+  </div>
+  {# <div class="preloader-body">
+    <div id="loadingProgressG">
+      <div class="loadingProgressG" id="loadingProgressG_1"></div>
+    </div>
+  </div> #}
+  </div>
+  <div class="page">
+    {# <!-- Page Header--><a class="banner banner-top"
+      href="https://www.templatemonster.com/intense-multipurpose-html-template.html" target="_blank"><img
+        src="{{ asset('site/images/intense_02.jpg')}}" alt="" /></a> #}
+    {% block body %}
+
+
+    <!-- Navbar Start -->
+    {% include 'plantilla/header.html.twig' %}
+    <!-- Navbar End -->
+    <!-- Breadcrumbs -->
+    <section class="section novi-background breadcrumbs-custom bg-image context-dark"
+      style="background-image: url(images/breadcrumbs-image-1.jpg);">
+      <div class="breadcrumbs-custom-inner">
+        <div class="container breadcrumbs-custom-container">
+          <div class="breadcrumbs-custom-main">
+            <h6 class="breadcrumbs-custom-subtitle title-decorated">Crear vivienda</h6>
+            <h2 class="text-uppercase breadcrumbs-custom-title">Crear vivienda</h2>
+          </div>
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Crear vivienda</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section novi-background section-sm">
+      <div class="container">
+        <div class="layout-bordered">
+        </div>
+      </div>
+    </section>
+    <section class="section novi-background bg-gray-100">
+      <div class="container">
+        <div class="row">
+          <!-- Left Column -->
+          <div class="col-lg-6">
+            {# <h3 class="text-uppercase">Añadir vivienda</h3> #}
+            <div class="row row-10">
+              <div class="col-md-12">
+                <div class="form-wrap d-flex justify-content-between align-items-center">
+                  <style>
+                    .titulo {
+                      width: 80%;
+                      float: left;
+                      /* Para que los divs se coloquen uno al lado del otro */
+                    }
+
+                    .personas {
+                      width: 20%;
+                      float: left;
+                      /* Para que los divs se coloquen uno al lado del otro */
+                    }
+
+                    .clearfix::after {
+                      content: "";
+                      clear: both;
+                      display: table;
+                    }
+                  </style>
+
+                  <div class="titulo">
+                    <label class="form-label-outside" for="contact-first-name">Título</label>
+                    <input class="form-input form-control" id="contact-first-name" type="text" name="name"
+                      data-constraints="@Required">
+                  </div>
+                  <div class="personas">
+                    <label class="form-label-outside" for="contct-number">nºpersonas</label>
+                    <input class="form-input form-control" id="contct-number" type="number" name="number"
+                      data-constraints="@Required" min="0">
+                  </div>
+                  <div class="clearfix"></div>
+
+                </div>
+                <label id="idUsuario" style="display:none">{{ app.user.id }}</</label> </div> <div class="col-12">
+                  <div class="form-wrap">
+                    <label class="form-label-outside" for="contact-message">Descripcion</label>
+                    <textarea class="form-input form-control" id="contact-message" name="message"
+                      data-constraints="@Required"></textarea>
+                  </div>
+              </div>
+              <div class="col-12">
+                <div class="form-wrap">
+                  <label class="form-label-outside" for="contact-message">Categoría</label>
+                  <div class="d-flex align-items-center">
+                    <select id="select-categorias" class="form-input form-control me-2">
+                      <option value="">Selecciona una categoría</option>
+                    </select>
+                    <button id="agregar-categoria" class="btn btn-success">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                  <div id="tabla-container">
+                    <table id="tabla-categorias" class="table">
+                      <thead>
+                        <tr id="cabeza">
+                          <th>Categoría</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Aquí se añadirán las filas de categorías seleccionadas -->
+                      </tbody>
+                    </table>
+                  </div>
+
+
+
+
+                  <label class="form-label-outside" for="contact-first-name">Imagenes</label>
+                  <div class="input-field">
+                    <div class="input-images-1" style="padding-top: .5rem;"></div>
+                  </div>
+
+
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column -->
+          <div class="col-lg-6">
+
+
+
+            <div id="modalmapa" title="Mapa" style="display: none;">
+              <div class="d-flex align-items-center mb-4">
+                <label for="ini-ruta" class="mr-2">Dirección:</label>
+                <input type="text" id="ini-ruta" class="form-control mr-2" placeholder="Ingrese la dirección">
+                <button class="btn btn-primary" onclick="geocodificarDireccion()">Buscar</button>
+              </div>
+
+              <div class="mb-3 d-flex justify-content-center align-items-center mt-4">
+                <label for="ProvinciasSelect" class="form-lable me-3">Provincia:</label>
+                <select id="ProvinciasSelect" class="form-input me-3" style="width: 300px;"></select>
+                <label for="LocalidadesSelect" class="form-lable ms-2 me-3">Localidad:</label>
+                <select id="LocalidadesSelect" class="form-input ms-4" style="width: 300px;"></select>
+              </div>
+
+              <div>
+                <p style="display:none">Latitud: <span id="latitudIni"></span></p>
+                <p style="display:none">Longitud: <span id="longitudIni"></span></p>
+              </div>
+
+              <div id="mapa"></div>
+              <div class="page-wrapper box-content"></div>
+            </div>
+            <label class="form-label-outside" for="contact-first-name">Disponibilidad</label>
+            <div id="tabs-6" class="tab-pane active">
+              <div class="page-wrapper box-content">
+                <div class="mb-3 text-center">
+                  <label for="diasSemana" class="form-labl mb-2">Días de la semana:</label>
+                  <div class="btn-group d-flex flex-wrap justify-content-center" role="group"
+                    aria-label="Días de la semana">
+                    <div class="mx-2">
+                      <input type="checkbox" class="btn-check" id="btn-lunes" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btn-lunes">L</label>
+                    </div>
+                    <div class="mx-2">
+                      <input type="checkbox" class="btn-check" id="btn-martes" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btn-martes">M</label>
+                    </div>
+                    <div class="mx-2">
+                      <input type="checkbox" class="btn-check" id="btn-miercoles" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btn-miercoles">X</label>
+                    </div>
+                    <div class="mx-2">
+                      <input type="checkbox" class="btn-check" id="btn-jueves" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btn-jueves">J</label>
+                    </div>
+                    <div class="mx-2">
+                      <input type="checkbox" class="btn-check" id="btn-viernes" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btn-viernes">V</label>
+                    </div>
+                    <div class="mx-2">
+                      <input type="checkbox" class="btn-check" id="btn-sabado" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btn-sabado">S</label>
+                    </div>
+                    <div class="mx-2">
+                      <input type="checkbox" class="btn-check" id="btn-domingo" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btn-domingo">D</label>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="mb-3 text-center">
+                  <div class="d-inline-block me-3">
+                    <label for="startDateProg" class="form-labl">Fecha inicio:</label>
+                    <input type="text" class="fecha-input form-control" id="startDateProg">
+                  </div>
+
+
+
+                  <div class="d-inline-block">
+                    <label for="endDateProg" class="form-labl">Fecha fin:</label>
+                    <input type="text" class="fecha-input form-control" id="endDateProg">
+                  </div>
+
+                  <div class="d-inline-block">
+                    <label for="precio" class="form-labl">Precio por dia:</label>
+                    <input type="text" class="fecha-input form-control" id="precioinput">
+                  </div>
+
+                  <div class="d-inline-block">
+                    <button id="btnAgregar"  class="btn btn-success"> <i class="fas fa-plus"></i> </button>
+                  </div>
+
+                </div>
+
+
+
+
+                <div class="mb-3 text-center">
+                  <div class="d-inline-block">
+
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <div class="table-responsive">
+                    <table class="table" id="tablaprog">
+                      <thead>
+                        <tr>
+                          <th>Días de la semana</th>
+                          <th>Fecha inicio</th>
+                          <th>Fecha final</th>
+                          <th>Precio</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody id="bodydias"></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="text-right w-100">
+                  <button id="botonmodal" class="btn btn-secondary mt-3">Abrir Mapa</button>
+                  <button class="button button-primary button-winona btn btn-primary" type="submit">Crear</button>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Page Footer-->
+
+    <footer class="section novi-background footer-advanced bg-gray-700">
+      <div class="footer-advanced-main">
+        <div class="container">
+          <div class="row row-50">
+            <div class="col-lg-4">
+              <h5 class="font-weight-bold text-uppercase text-white">About Us</h5>
+              <p class="footer-advanced-text">inHouse is the largest full-service real estate and property management
+                company. We offer expertise in the marketing and sale of a wide range of properties, including
+                residential real estate, farms and lifestyle blocks, as well as commercial and industrial properties
+                that we hope may interest you.</p>
+            </div>
+            <div class="col-sm-7 col-md-5 col-lg-4">
+              <h5 class="font-weight-bold text-uppercase text-white">Recent Blog Posts</h5>
+              <!-- Post Inline-->
+              <article class="post-inline">
+                <p class="post-inline-title"><a href="#">Real Estate Guide: 7 Important Tips for Buying a Home</a></p>
+                <ul class="post-inline-meta">
+                  <li>by Mike Barnes</li>
+                  <li><a href="#">2 days ago</a></li>
+                </ul>
+              </article>
+              <!-- Post Inline-->
+              <article class="post-inline">
+                <p class="post-inline-title"><a href="#">Single-Family Homes as a Housing Option for Young Families</a>
+                </p>
+                <ul class="post-inline-meta">
+                  <li>by Mike Barnes</li>
+                  <li><a href="#">2 days ago</a></li>
+                </ul>
+              </article>
+            </div>
+            <div class="col-sm-5 col-md-7 col-lg-4">
+              <h5 class="font-weight-bold text-uppercase text-white">Gallery</h5>
+              <div class="row row-x-10" data-lightgallery="group">
+                <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/gallery-original-1.jpg"
+                    data-lightgallery="item"><img class="thumbnail-minimal-image"
+                      src="images/footer-gallery-1-85x85.jpg" alt="">
+                    <div class="thumbnail-minimal-caption"></div>
+                  </a></div>
+                <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/gallery-original-2.jpg"
+                    data-lightgallery="item"><img class="thumbnail-minimal-image"
+                      src="images/footer-gallery-2-85x85.jpg" alt="">
+                    <div class="thumbnail-minimal-caption"></div>
+                  </a></div>
+                <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/gallery-original-3.jpg"
+                    data-lightgallery="item"><img class="thumbnail-minimal-image"
+                      src="images/footer-gallery-3-85x85.jpg" alt="">
+                    <div class="thumbnail-minimal-caption"></div>
+                  </a></div>
+                <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/gallery-original-4.jpg"
+                    data-lightgallery="item"><img class="thumbnail-minimal-image"
+                      src="images/footer-gallery-4-85x85.jpg" alt="">
+                    <div class="thumbnail-minimal-caption"></div>
+                  </a></div>
+                <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/gallery-original-5.jpg"
+                    data-lightgallery="item"><img class="thumbnail-minimal-image"
+                      src="images/footer-gallery-5-85x85.jpg" alt="">
+                    <div class="thumbnail-minimal-caption"></div>
+                  </a></div>
+                <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/gallery-original-6.jpg"
+                    data-lightgallery="item"><img class="thumbnail-minimal-image"
+                      src="images/footer-gallery-6-85x85.jpg" alt="">
+                    <div class="thumbnail-minimal-caption"> </div>
+                  </a></div>
+                <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/gallery-original-7.jpg"
+                    data-lightgallery="item"><img class="thumbnail-minimal-image"
+                      src="images/footer-gallery-7-85x85.jpg" alt="">
+                    <div class="thumbnail-minimal-caption"></div>
+                  </a></div>
+                <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/gallery-original-8.jpg"
+                    data-lightgallery="item"><img class="thumbnail-minimal-image"
+                      src="images/footer-gallery-8-85x85.jpg" alt="">
+                    <div class="thumbnail-minimal-caption"></div>
+                  </a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <hr>
+      </div>
+      <div class="footer-advanced-aside">
+        <div class="container">
+          <div class="footer-advanced-layout"><a class="brand" href="index.html"><img src="images/logo-light-115x34.png"
+                alt="" width="115" height="34" srcset="images/logo-light-115x34.png 2x" /></a>
+            <!-- Rights-->
+            <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span>. All Rights Reserved. Design
+              by <a href="https://www.templatemonster.com">TemplateMonster</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- Global Mailform Output-->
+  <div class="snackbars" id="form-output-global"></div>
+  <!-- Javascript-->
+  <script src="{{ asset('site/js/core.min.js') }}"></script>
+  <script src="{{ asset('site/js/script.js') }}"></script>
+  <script src="{{ asset('site/js/creavivienda.js') }}"></script>
+
+
+
+
+  
+
+  <script type="text/javascript" src="{{ asset('js/modalmapa.js') }}"></script>
+
+  <link rel="stylesheet" href="{{ asset('Styles/modalmapa.css') }}">
+
+
+
+  {% endblock %}
+</body>
+<link rel="stylesheet" href="{{asset('plugins/tabs/mapa.css')}}" />
+<script src="{{asset('plugins/tabs/mapa.js')}}"></script>
+
+<script type="text/javascript" src="{{asset('plugins/drag/dist/image-uploader.min.js')}}"></script>
+<script src="{{asset('plugins/drag/imagen.js')}}"></script>
+
+<link rel="stylesheet" href="{{asset('plugins/drag/dist/image-uploader.min.css')}}">
+<link
+  href="https://fonts.googleapis.com/css?family=Lato:300,700|Montserrat:300,400,500,600,700|Source+Code+Pro&display=swap"
+  rel="stylesheet">
+
+
+
+<!-- jQuery UI -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+<!-- datepicker -->
+<script src="{{asset('plugins/datepicker/datepicker.js')}}"></script>
+
+<!-- timepicker -->
+<script src="{{asset('plugins/timepicker/timepicker.js')}}"></script>
+
+
+
+
+
+<style>
+  /* Ocultar la caja del checkbox */
+  .btn-check {
+    position: absolute;
+    opacity: 0;
+  }
+
+  /* Color azul cuando está seleccionado */
+  .btn-check:checked+.btn-outline-primary {
+    background-color: blue;
+    color: white;
+    border-color: blue;
+  }
+
+  /* Color gris cuando no está seleccionado */
+  .btn-outline-primary {
+    background-color: gray;
+    color: white;
+    border-color: gray;
+  }
+
+  /* Mantener el color gris cuando el checkbox no está marcado */
+  .btn-check:not(:checked)+.btn-outline-primary {
+    background-color: gray;
+    color: white;
+    border-color: gray;
+  }
+
+
+
+  #tabla-container {
+    max-height: 150px;
+    /* Ajusta la altura según tus necesidades */
+    overflow-y: auto;
+    width: 100%;
+    /* Asegura que el contenedor ocupe todo el ancho disponible */
+    border: 1px solid #ddd;
+    /* Agrega un borde alrededor del contenedor para mejor visualización */
+  }
+
+  #tabla-categorias {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #tabla-categorias thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    /* Asegura que las columnas tienen un ancho fijo */
+  }
+
+  #tabla-categorias thead th {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1;
+  }
+
+  #tabla-categorias tbody {
+    display: block;
+    max-height: 118px;
+    /* Ajusta la altura según tus necesidades */
+    overflow-y: auto;
+    width: 100%;
+    /* Asegura que el tbody ocupa todo el ancho disponible */
+  }
+
+  #tabla-categorias th,
+  #tabla-categorias td {
+    width: 50%;
+    /* Asegura que las dos columnas ocupen el ancho completo */
+    box-sizing: border-box;
+  }
+
+  #tabla-categorias tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    /* Asegura que las filas ocupen todo el ancho disponible */
+  }
+
+  #tabla-categorias {
+    height: 150px
+  }
+
+
+  #tablaprog {
+    width: 100%;
+    border-collapse: collapse;
+    height: 205px
+  }
+
+  #tablaprog thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    /* Asegura que las columnas tienen un ancho fijo */
+  }
+
+  #tablaprog thead th {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1;
+  }
+
+  #tablaprog tbody {
+    display: block;
+    max-height: 118px;
+    /* Ajusta la altura según tus necesidades */
+    overflow-y: auto;
+    width: 100%;
+    /* Asegura que el tbody ocupa todo el ancho disponible */
+  }
+
+  #tablaprog th,
+  #tablaprog td {
+    width: 20%;
+    /* Ajusta según el número de columnas */
+    box-sizing: border-box;
+  }
+
+  #tablaprog tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    /* Asegura que las filas ocupen todo el ancho disponible */
+  }
+</style>
+
+
+<link rel="stylesheet" href="{{ asset('Styles/modalmapa.css') }}">
+
+</html>

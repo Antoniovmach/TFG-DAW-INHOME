@@ -1,0 +1,183 @@
+<html class="wide wow-animation" lang="en">
+
+<head>
+  <title>Home</title>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport"
+    content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <link rel="icon" href="{{ asset('site/images/favicon.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" type="text/css"
+    href="//fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800%7CPoppins:300,400,700">
+  <link rel="stylesheet" href="{{ asset('site/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('site/css/fonts.css') }}">
+  <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" id="main-styles-link">
+
+
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+
+
+
+
+
+  <style>
+    .ie-panel {
+      display: none;
+      background: #212121;
+      padding: 10px 0;
+      box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, .3);
+      clear: both;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    html.ie-10 .ie-panel,
+    html.lt-ie-10 .ie-panel {
+      display: block;
+    }
+  </style>
+
+
+
+</head>
+
+
+
+
+
+
+
+<body>
+  <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img
+        src="{{ asset('site/images/ie8-panel/warning_bar_0000_us.jpg')}}" height="42" width="820"
+        alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a>
+  </div>
+  <div class="preloader">
+    <div class="preloader-logo">
+      <img src="{{ asset('site/images/logo-default-151x44.png') }}" alt="" width="151" height="44"
+        srcset="{{ asset('site/images/logo-default-151x44.png') }} 2x" />
+    </div>
+
+  </div>
+  {# <div class="preloader-body">
+    <div id="loadingProgressG">
+      <div class="loadingProgressG" id="loadingProgressG_1"></div>
+    </div>
+  </div> #}
+  </div>
+  <div class="page">
+    {# <!-- Page Header--><a class="banner banner-top"
+      href="https://www.templatemonster.com/intense-multipurpose-html-template.html" target="_blank"><img
+        src="{{ asset('site/images/intense_02.jpg')}}" alt="" /></a> #}
+    {% block body %}
+
+
+    <!-- Navbar Start -->
+    {% include 'plantilla/header.html.twig' %}
+    <!-- Navbar End -->
+    <!-- Breadcrumbs -->
+    <section class="section novi-background breadcrumbs-custom bg-image context-dark"
+      style="background-image: url(images/breadcrumbs-image-1.jpg);">
+      <div class="breadcrumbs-custom-inner">
+        <div class="container breadcrumbs-custom-container">
+          <div class="breadcrumbs-custom-main">
+            <h6 class="breadcrumbs-custom-subtitle title-decorated">Mis reservas</h6>
+            <h2 class="text-uppercase breadcrumbs-custom-title">Mis reservas</h2>
+          </div>
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Mis reservas</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section novi-background section-sm">
+      <div class="container">
+        <div class="layout-bordered">
+        </div>
+      </div>
+    </section>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% if viviendasReservas is not empty %}
+      {% for viviendaReserva in viviendasReservas %}
+      <div class="col mb-4">
+        <div class="card" style="max-width: 100%; margin: 0 10px;">
+          {% set firstFoto = viviendaReserva.vivienda.ViviendaFotos[0] ?? null %}
+          {% if firstFoto %}
+          <div class="card-img-top"
+            style="background-image: url('/uploads/images/{{ firstFoto.fotourl }}'); height: 200px; background-size: cover; background-position: center;">
+          </div>
+          {% endif %}
+          <div class="card-body d-flex flex-column justify-content-end">
+            <h3 class="card-title mb-0" style="cursor: pointer;" onclick="toggleDisponibilidades(this)">
+              {{ viviendaReserva.vivienda.TITULO }}</h3>
+            <div class="disponibilidades mt-3" style="display: none;">
+              <h4>Reservas</h4>
+              <ul>
+                {% for reserva in viviendaReserva.reservas %}
+                <li>
+                  {# Reserva ID: {{ reserva.id }}, #}
+                
+                  Fecha: {{ reserva.getDisponibilidadVivienda().getFecha() | date('d-m-Y') }},  
+                  Confirmado: {{ reserva.confirmado ? 'Sí' : 'No' }}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="col">
+        <p>No tienes reservas.</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <script>
+      function toggleDisponibilidades(element) {
+        var disponibilidadesDiv = element.parentElement.querySelector('.disponibilidades');
+        disponibilidadesDiv.style.display = (disponibilidadesDiv.style.display === 'none') ? 'block' : 'none';
+      }
+    </script>
+
+
+  </div>
+  <!-- Global Mailform Output-->
+  <div class="snackbars" id="form-output-global"></div>
+  <!-- Javascript-->
+  <script src="{{ asset('site/js/core.min.js') }}"></script>
+  <script src="{{ asset('site/js/script.js') }}"></script>
+
+
+
+
+
+
+
+
+  {% endblock %}
+</body>
+
+
+
+
+<!-- jQuery UI -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+</html>

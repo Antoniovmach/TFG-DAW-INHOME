@@ -1,0 +1,326 @@
+<html class="wide wow-animation" lang="en">
+
+<head>
+  <title>Home</title>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport"
+    content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <link rel="icon" href="{{ asset('site/images/favicon.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" type="text/css"
+    href="//fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800%7CPoppins:300,400,700">
+  <link rel="stylesheet" href="{{ asset('site/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('site/css/fonts.css') }}">
+  <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" id="main-styles-link">
+
+
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+
+
+
+
+
+  <style>
+    .ie-panel {
+      display: none;
+      background: #212121;
+      padding: 10px 0;
+      box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, .3);
+      clear: both;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    html.ie-10 .ie-panel,
+    html.lt-ie-10 .ie-panel {
+      display: block;
+    }
+  </style>
+
+
+
+</head>
+
+
+
+
+
+
+
+<body>
+  <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img
+        src="{{ asset('site/images/ie8-panel/warning_bar_0000_us.jpg')}}" height="42" width="820"
+        alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a>
+  </div>
+  <div class="preloader">
+    <div class="preloader-logo">
+      <img src="{{ asset('site/images/logo-default-151x44.png') }}" alt="" width="151" height="44"
+        srcset="{{ asset('site/images/logo-default-151x44.png') }} 2x" />
+    </div>
+
+  </div>
+  {# <div class="preloader-body">
+    <div id="loadingProgressG">
+      <div class="loadingProgressG" id="loadingProgressG_1"></div>
+    </div>
+  </div> #}
+  </div>
+  <div class="page">
+    {# <!-- Page Header--><a class="banner banner-top"
+      href="https://www.templatemonster.com/intense-multipurpose-html-template.html" target="_blank"><img
+        src="{{ asset('site/images/intense_02.jpg')}}" alt="" /></a> #}
+    {% block body %}
+
+
+    <!-- Navbar Start -->
+    {% include 'plantilla/header.html.twig' %}
+    <!-- Navbar End -->
+    <!-- Breadcrumbs -->
+    <section class="section novi-background breadcrumbs-custom bg-image context-dark"
+      style="background-image: url(images/breadcrumbs-image-1.jpg);">
+      <div class="breadcrumbs-custom-inner">
+        <div class="container breadcrumbs-custom-container">
+          <div class="breadcrumbs-custom-main">
+            <h6 class="breadcrumbs-custom-subtitle title-decorated">{{ vivienda.titulo }}</h6>
+            <h2 class="text-uppercase breadcrumbs-custom-title">{{ vivienda.titulo }}</h2>
+          </div>
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Vivienda individual</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section novi-background section-sm">
+      <div class="container">
+        <div class="layout-bordered">
+        </div>
+      </div>
+    </section>
+    <section class="section section-lg">
+      <div class="container">
+        <div class="row row-50">
+          <div class="col-lg-8">
+            <article class="post-creative">
+              <h3 class="post-creative-title text-none-transform">{{ vivienda.titulo }}</h3>
+              <h4>{{ vivienda.descripcion }}</h4>
+
+              <!-- Swiper Slider Section -->
+              <section
+                class="swiper-container swiper-slider swiper-slider-tiny text-center centered-pagination swiper-container-fade swiper-container-horizontal swiper-container-wp8-horizontal"
+                data-loop="true" data-slide-effect="fade" data-autoplay="false" data-simulate-touch="true">
+                <div class="swiper-wrapper primary-overlay">
+                  {% for foto in vivienda.viviendaFotos %}
+                  <div class="swiper-slide"
+                    style="background-image: url('{{ asset('/uploads/images/' ~ foto.fotoUrl) }}'); background-size: cover; background-position: center;">
+                  </div>
+                  {% endfor %}
+                </div>
+                <div class="swiper-pagination-outer container">
+                  <div
+                    class="swiper-pagination swiper-pagination-modern swiper-pagination-marked swiper-pagination-clickable swiper-pagination-bullets"
+                    data-index-bullet="true">
+                    {% for i in 1..vivienda.viviendaFotos|length %}
+                    <span class="swiper-pagination-bullet">{{ i|format('%02d') }}</span>
+                    {% endfor %}
+                    <span class="swiper-pagination-mark"></span>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Quote Light-->
+              <blockquote class="quote-light">
+
+
+
+
+                <!-- Incluye el CSS de Bootstrap, Font Awesome y FullCalendar -->
+                <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+                  rel="stylesheet">
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.2/main.min.css" rel="stylesheet">
+                <!-- Incluye jQuery y Moment.js -->
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+                <!-- Incluye FullCalendar -->
+                <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
+                <!-- Estilos personalizados -->
+                <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/customcalendar.css') }}">
+
+
+
+                <div class="container">
+
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calendarModal">
+                    Seleccionar fechas
+                  </button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog"
+                    aria-labelledby="calendarModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="calendarModalLabel">Calendario</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div id='calendar'></div>
+                        </div>
+                        <div class="modal-footer">
+                          <div class="mt-3">
+
+                            <h5>Total Precio: <span id="total-precio">0</span>c</h5>
+
+                          </div>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                          <button type="button" id="alquilar" class="btn btn-primary">Alquilar</button>
+                          <button type="button" id="intercambiar" class="btn btn-primary">Intercambiar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+<div class="modal fade" id="intercambiarModal" tabindex="-1" aria-labelledby="intercambiarModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="intercambiarModalLabel">Viviendas Disponibles</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Aquí se insertarán dinámicamente las viviendas disponibles -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                </div>
+
+                <link rel="stylesheet" href="{{asset('plugins/tabs/mapa.css')}}" />
+                <script src="{{asset('plugins/tabs/mapaderuta.js')}}"></script>
+              </blockquote>
+            </article>
+          </div>
+          <div class="col-lg-4">
+            <!-- Profile Thin-->
+            <article class="profile-thin">
+
+              <div class="profile-thin-main">
+                <p class="profile-thin-title">Caracteristicas</p>
+                {% for categorium in vivienda.getCategoria() %}
+                <div class="categoria-box">
+                  <span class="categoria">{{ categorium.getNombre() }}</span>
+                </div>
+
+                {% endfor %}
+                <p class="profile-thin-title">Capacidad maxima</p>
+
+                <div class="categoria-box">
+                  <span class="categoria">{{ vivienda.npersonas }} personas</span>
+                </div>
+
+                <div class="bg-white mb-3" style="padding: 30px;">
+                  <h4 class="text-uppercase mb-4" style="letter-spacing:">Ubicacion aproximada</h4>
+                  <div id="mapa" style="height: 300px;"></div>
+                </div>
+
+                <style>
+                  /* Estilos CSS */
+                  .categorias {
+                    display: flex;
+                    flex-wrap: wrap;
+                  }
+
+                  .categoria-box {
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+                    padding: 5px 10px;
+                    background-color: #3498db;
+                    /* Azul */
+                    border-radius: 5px;
+                  }
+
+                  .categoria {
+                    color: white;
+                  }
+                </style>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .swiper-container {
+        width: 100%;
+        height: 300px;
+        /* Fija la altura del contenedor Swiper */
+      }
+
+      .swiper-slide {
+        width: 100%;
+        height: 100%;
+        /* Las diapositivas del Swiper se ajustan al 100% del contenedor */
+        background-size: cover;
+        background-position: center;
+      }
+    </style>
+
+
+  </div>
+  <!-- Global Mailform Output-->
+  <div class="snackbars" id="form-output-global"></div>
+  <!-- Javascript-->
+  <script src="{{ asset('site/js/core.min.js') }}"></script>
+  <script src="{{ asset('site/js/script.js') }}"></script>
+  <script src="{{ asset('site/js/creavivienda.js') }}"></script>
+
+
+
+
+
+
+
+  {% endblock %}
+</body>
+
+<script type="text/javascript" src="{{asset('plugins/drag/dist/image-uploader.min.js')}}"></script>
+
+
+<link rel="stylesheet" href="{{asset('plugins/drag/dist/image-uploader.min.css')}}">
+<link
+  href="https://fonts.googleapis.com/css?family=Lato:300,700|Montserrat:300,400,500,600,700|Source+Code+Pro&display=swap"
+  rel="stylesheet">
+
+
+<!-- jQuery UI -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript" src="{{asset('js/viviendasindv.js')}}"></script>
+
+</html>

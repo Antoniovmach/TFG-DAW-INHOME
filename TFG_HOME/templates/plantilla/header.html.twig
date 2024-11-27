@@ -1,0 +1,145 @@
+    <header class="section novi-background page-header">
+        <!-- RD Navbar-->
+        <div class="rd-navbar-wrap">
+            <nav class="rd-navbar rd-navbar-corporate" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
+                data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed"
+                data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-lg-stick-up="true"
+                data-lg-stick-up-offset="118px" data-xl-layout="rd-navbar-static"
+                data-xl-device-layout="rd-navbar-static" data-xl-stick-up="true" data-xl-stick-up-offset="118px"
+                data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static"
+                data-xxl-stick-up-offset="118px" data-xxl-stick-up="true">
+                <div class="rd-navbar-aside-outer">
+                    <div class="rd-navbar-aside">
+                        <!-- RD Navbar Panel-->
+                        <div class="rd-navbar-panel">
+                            <!-- RD Navbar Toggle-->
+                            <button class="rd-navbar-toggle"
+                                data-rd-navbar-toggle="#rd-navbar-nav-wrap-1"><span></span></button>
+                            <!-- RD Navbar Brand-->
+                            <div class="rd-navbar-brand">
+                                <a href="index.html">
+                                    <img src="{{ asset('site/images/logo-default-151x44.png') }}" alt="" width="151"
+                                        height="44" srcset="{{ asset('site/images/logo-default-151x44.png') }} 2x" />
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="rd-navbar-main-outer">
+                        <div class="rd-navbar-main">
+                            <div class="rd-navbar-nav-wrap" id="rd-navbar-nav-wrap-1">
+                                <!-- RD Navbar Nav-->
+                                <ul class="rd-navbar-nav">
+                                    <li class="rd-nav-item active"> <a class="rd-nav-link"
+                                            href="{{ path('home') }}">Pagina Principal</a>
+                                    <li class="rd-nav-item"><a class="rd-nav-link" href="about-us.html">Quienes
+                                            somos</a></li>
+
+                                    <li class="rd-nav-item"><a class="rd-nav-link"
+                                            href="{{ path('viviendas') }}">Viviendas disponibles</a></li>
+                                    <li class="rd-nav-item"><a class="rd-nav-link"
+                                            href="{{ path('creavivienda') }}">Crear viviendas</a></li>
+                                    {% if app.user %}
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <div class="rd-nav-item">
+                                        <li class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                            <a class="rd-nav-link" href="#">{{ app.user.email }}
+                                                -puntos:{{ app.user.puntos }}</a>
+                                        </li>
+
+                                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                                            <a href="/logout" class="dropdown-item">Cerrar sesión</a>
+                                            <a href="{{ path('admin') }}" class="dropdown-item">Zona administración</a>
+
+                                            <label id="openModalBtn" class="dropdown-item">Hazte premium</label>
+                                            <a href="{{ path('misviviendas') }}" class="dropdown-item">Mis viviendas</a>
+                                            <a href="{{ path('misreservas') }}" class="dropdown-item">Mis reservas</a>
+
+                                        </div>
+                                    </div>
+                                    {% elseif is_granted('ROLE_USER') %}
+                                    <div class="rd-nav-item">
+                                        <li class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                            <a class="rd-nav-link" href="#">{{ app.user.email }}
+                                                -puntos:{{ app.user.puntos }}</a>
+
+                                        </li>
+
+                                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                                            <a href="/logout" class="dropdown-item">Cerrar sesión</a>
+                                            <label id="openModalBtn" class="dropdown-item">Hazte premium</label>
+                                            <label id="puntos"
+                                                class="dropdown-item">puntos:{{ app.user.puntos }}</label>
+                                            <a href="{{ path('misviviendas') }}" class="dropdown-item">Mis viviendas</a>
+                                            <a href="{{ path('misreservas') }}" class="dropdown-item">Mis reservas</a>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="rd-nav-item">
+                                        <li class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                            <a class="rd-nav-link" href="#">{{ app.user.email }}</a>
+
+                                        </li>
+
+                                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                                            <a href="/logout" class="dropdown-item">Cerrar sesión</a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% else %}
+                                    <div class="rd-nav-item">
+                                        <a class="rd-nav-link" href="{{ path('app_login') }}">Inicia sesión</a>
+                                    </div>
+                                    {% endif %}
+
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+            </nav>
+        </div>
+
+        {% if app.user %}
+        <label id="idUsuario" style="display: none">{{ app.user.id }}</label>
+        {% endif %}
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <div class="pricing-container">
+                    <div class="pricing-card">
+                        <div class="icon">
+                            <img src="{{ asset('site/images/carro.png') }}" alt="Carrito de compra" width="50"
+                                height="50" class="carrito-blanco">
+
+                        </div>
+                        <h2>$0</h2>
+                        <p>Por año</p>
+                        <ul>
+                            <li>Acceso a todos los servicios</li>
+                            <li>1000 créditos</li>
+                        </ul>
+                        <label class="btn black-btn" id="comprarBtn">Comprar</label>
+                    </div>
+                    <!-- Descomentar esta sección para añadir otra tarjeta de precios
+                <div class="pricing-card">
+                    <div class="icon">
+                        <img src="https://www.bing.com/favicon.ico" alt="Phone">
+                    </div>
+                    <h2>$29</h2>
+                    <p>Por mes</p>
+                    <ul>
+                        <li>15 Usuarios</li>
+                        <li>Función 2</li>
+                        <li>Función 3</li>
+                        <li>Función 4</li>
+                    </ul>
+                    <a href="#" class="btn blue-btn">OBTENER UN PLAN</a>
+                </div>
+                -->
+                </div>
+            </div>
+        </div>
+    </header>

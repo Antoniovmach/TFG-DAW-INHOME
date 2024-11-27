@@ -1,0 +1,265 @@
+<html class="wide wow-animation" lang="en">
+
+<head>
+  <title>Home</title>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport"
+    content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <link rel="icon" href="{{ asset('site/images/favicon.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" type="text/css"
+    href="//fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800%7CPoppins:300,400,700">
+  <link rel="stylesheet" href="{{ asset('site/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('site/css/fonts.css') }}">
+  <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" id="main-styles-link">
+
+
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+
+<body>
+
+  <div class="preloader">
+    <div class="preloader-logo">
+      <img src="{{ asset('site/images/logo-default-151x44.png') }}" alt="" width="151" height="44"
+        srcset="{{ asset('site/images/logo-default-151x44.png') }} 2x" />
+    </div>
+
+  </div>
+  {# <div class="preloader-body">
+    <div id="loadingProgressG">
+      <div class="loadingProgressG" id="loadingProgressG_1"></div>
+    </div>
+  </div> #}
+  </div>
+  <div class="page">
+    {# <!-- Page Header--><a class="banner banner-top"
+      href="https://www.templatemonster.com/intense-multipurpose-html-template.html" target="_blank"><img
+        src="{{ asset('site/images/intense_02.jpg')}}" alt="" /></a> #}
+    {% block body %}
+
+
+    <!-- Navbar Start -->
+    {% include 'plantilla/header.html.twig' %}
+    <!-- Navbar End -->
+    <!-- Breadcrumbs -->
+    <section class="section novi-background breadcrumbs-custom bg-image context-dark"
+      style="background-image: url(images/breadcrumbs-image-1.jpg);">
+      <div class="breadcrumbs-custom-inner">
+        <div class="container breadcrumbs-custom-container">
+          <div class="breadcrumbs-custom-main">
+            <h6 class="breadcrumbs-custom-subtitle title-decorated">Mis viviendas</h6>
+            <h2 class="text-uppercase breadcrumbs-custom-title">Mis viviendas</h2>
+          </div>
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Mis viviendas</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section novi-background section-sm">
+      <div class="container">
+        <div class="layout-bordered">
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+  <!-- Global Mailform Output-->
+  <div class="snackbars" id="form-output-global"></div>
+  <!-- Javascript-->
+  <script src="{{ asset('site/js/core.min.js') }}"></script>
+  <script src="{{ asset('site/js/script.js') }}"></script>
+  <div class="container">
+    {% for viviendaData in viviendasData %}
+    <div class="card mb-4">
+      <div class="card-header">
+        {{ viviendaData.titulo }}
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{ viviendaData.descripcion }}</p>
+        <div class="row">
+          {% set firstDisponibilidad = viviendaData.disponibilidades[0] ?? null %}
+          {% if firstDisponibilidad %}
+          <div class="col-md-4">
+            {% if viviendaData.fotoUrl %}
+            <img src="{{ asset('/uploads/images/' ~ viviendaData.fotoUrl) }}" class="img-fluid"
+              alt="Foto de la vivienda">
+            {% else %}
+            <p>No hay foto disponible</p>
+            {% endif %}
+          </div>
+          <div class="col-md-8">
+            <h5>Disponibilidades:</h5>
+            <ul class="list-group">
+              {% for disponibilidadData in viviendaData.disponibilidades %}
+              <li class="list-group-item">
+                Fecha: {{ disponibilidadData.fecha }}
+                {% if disponibilidadData.reservas|length > 0 %}
+                {% for reservaData in disponibilidadData.reservas %}
+                {# | ID de la Reserva: {{ reservaData.id }} #}
+                Confirmado:
+                <label class="confirmado">{{ reservaData.confirmado }} </label>
+                {% if reservaData.intercambiojson|length > 0 %}
+                | Intercambio: {{ reservaData.intercambiojson|json_encode }}
+                {% endif %}
+                {% if reservaData.confirmado == 'No' or reservaData.confirmado == 0 %}
+                <button onclick="confirmarReserva({{ reservaData.id }})">Confirmar</button>
+                <button onclick="rechazarReserva({{ reservaData.id }})">Rechazar</button>
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                | No hay reservas
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    function confirmarReserva(reservaId) {
+      console.log("ID de la reserva confirmada:", reservaId);
+
+      // Encontrar el botón de Confirmar que fue clicado
+      const confirmButton = document.querySelector(`button[onclick="confirmarReserva(${reservaId})"]`);
+
+      // Obtener el elemento <li> padre del botón de Confirmar
+      const listItem = confirmButton.parentElement;
+
+      // Asegurarse de que el elemento <li> existe
+      if (listItem) {
+        // Encontrar el label con la clase "confirmado" dentro del elemento <li>
+        const confirmadoLabel = listItem.querySelector('.confirmado');
+
+        // Asegurarse de que el label fue encontrado
+        if (confirmadoLabel) {
+
+          var datosPost = {
+            "reservaId": reservaId
+          };
+
+          // Realizar la solicitud AJAX
+          $.ajax({
+            url: '/reservas/confirmar',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(datosPost),
+            dataType: 'json',
+            success: function (data) {
+              // Función que se ejecuta si la solicitud se realiza con éxito
+              console.log('Respuesta del servidor:', data);
+              alert("Reserva confirmada correctamente");
+            },
+            error: function (error) {
+              // Función que se ejecuta si hay un error en la solicitud
+              console.error('Error en la solicitud:', error.responseText);
+              alert("Error al confirmar la reserva. Consulta la consola para más detalles.");
+            }
+          });
+
+          // Cambiar el texto de "No" a "Sí"
+          confirmadoLabel.textContent = 'Sí';
+
+          // Eliminar el botón de Confirmar
+          confirmButton.remove();
+
+          // Encontrar y eliminar el botón de Rechazar
+          const rejectButton = listItem.querySelector(`button[onclick="rechazarReserva(${reservaId})"]`);
+          if (rejectButton) {
+            rejectButton.remove();
+          }
+        } else {
+          console.error("Elemento con clase 'confirmado' no encontrado.");
+        }
+      } else {
+        console.error(`Elemento <li> no encontrado.`);
+      }
+    }
+
+    function rechazarReserva(reservaId) {
+      console.log("ID de la reserva rechazada:", reservaId);
+
+      // Encontrar el botón de Rechazar que fue clicado
+      const rejectButton = document.querySelector(`button[onclick="rechazarReserva(${reservaId})"]`);
+
+      // Obtener el elemento <li> padre del botón de Rechazar
+      const listItem = rejectButton.closest('li');
+
+
+      var datosPost = {
+        "reservaId": reservaId
+      };
+
+      // Realizar la solicitud AJAX
+      $.ajax({
+        url: '/reservas/rechazar',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(datosPost),
+        dataType: 'json',
+        success: function (data) {
+          // Función que se ejecuta si la solicitud se realiza con éxito
+          console.log('Respuesta del servidor:', data);
+          alert("Reserva confirmada correctamente");
+        },
+        error: function (error) {
+          // Función que se ejecuta si hay un error en la solicitud
+          console.error('Error en la solicitud:', error.responseText);
+          alert("Error al confirmar la reserva. Consulta la consola para más detalles.");
+        }
+      });
+
+      // Asegurarse de que el elemento <li> existe
+      if (listItem) {
+        // Eliminar el <li> completo
+        listItem.remove();
+      } else {
+        console.error(`Elemento <li> no encontrado.`);
+      }
+    }
+  </script>
+
+
+
+  {% endblock %}
+
+
+
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+</html>

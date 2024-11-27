@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+
+<head>
+  <title>Home</title>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <link rel="icon" href="{{ asset('site/images/favicon.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" type="text/css"
+    href="//fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800%7CPoppins:300,400,700">
+  <link rel="stylesheet" href="{{ asset('site/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('site/css/fonts.css') }}">
+  <link rel="stylesheet" href="{{ asset('site/css/style.css') }}" id="main-styles-link">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script type="text/javascript" src="{{ asset('js/programacion.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/ProvinciaLocalidad.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/categorias.js') }}"></script>
+  <style>
+    .ie-panel {
+      display: none;
+      background: #212121;
+      padding: 10px 0;
+      box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, .3);
+      clear: both;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    html.ie-10 .ie-panel,
+    html.lt-ie-10 .ie-panel {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img
+        src="{{ asset('site/images/ie8-panel/warning_bar_0000_us.jpg') }}" height="42" width="820"
+        alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a>
+  </div>
+  <div class="preloader">
+    <div class="preloader-logo">
+      <img src="{{ asset('site/images/logo-default-151x44.png') }}" alt="" width="151" height="44"
+        srcset="{{ asset('site/images/logo-default-151x44.png') }} 2x" />
+    </div>
+  </div>
+  <div class="page">
+    {% include 'plantilla/header.html.twig' %}
+    <section class="section novi-background breadcrumbs-custom bg-image context-dark"
+      style="background-image: url(images/breadcrumbs-image-1.jpg);">
+      <div class="breadcrumbs-custom-inner">
+        <div class="container breadcrumbs-custom-container">
+          <div class="breadcrumbs-custom-main">
+            <h6 class="breadcrumbs-custom-subtitle title-decorated">Viviendas diponibles</h6>
+            <h2 class="text-uppercase breadcrumbs-custom-title">Viviendas diponibles</h2>
+          </div>
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Viviendas diponibles</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section novi-background section-sm">
+      <div class="container">
+        <div class="layout-bordered"></div>
+      </div>
+    </section>
+
+    {% include 'plantilla/buscador.html.twig' %}
+
+    <section class="section novi-background section-md text-center">
+      <div class="container">
+        <h3 class="text-uppercase font-weight-bold wow-outer"><span class="wow slideInDown">VIVIENDAS DISPONIBLES</span>
+        </h3>
+        <div class="row row-lg-50 row-35 offset-top-2" id="properties-container">
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- Global Mailform Output-->
+  <div class="snackbars" id="form-output-global"></div>
+  <!-- Javascript-->
+  <script src="{{ asset('site/js/core.min.js') }}"></script>
+  <script src="{{ asset('site/js/script.js') }}"></script>
+  <script src="{{ asset('site/js/creavivienda.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/modalmapa.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/viviendasgeneral.js') }}"></script>
+
+
+</body>
+
+<script type="text/javascript" src="{{ asset('plugins/drag/dist/image-uploader.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('plugins/drag/dist/image-uploader.min.css') }}">
+<link
+  href="https://fonts.googleapis.com/css?family=Lato:300,700|Montserrat:300,400,500,600,700|Source+Code+Pro&display=swap"
+  rel="stylesheet">
+<!-- jQuery UI -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</html>

@@ -1,0 +1,134 @@
+
+/* Contenedor principal */
+
+
+/* Calendario */
+#calendar {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  height: 900px;
+}
+
+/* Estilo para las celdas de día */
+.fc-daygrid-day {
+  padding: 0;
+  border: 1px solid #ddd; /* Borde entre días */
+}
+
+/* Estilo para los días */
+.fc-daygrid-day-frame {
+  height: 100px; /* Altura fija para todos los días */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Distribuye uniformemente los elementos en la columna */
+  padding: 10px; /* Espaciado interno */
+}
+
+/* Estilo para los números de día */
+.fc-daygrid-day-number {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 5px; /* Coloca los números de los días en la parte superior */
+}
+
+/* Estilo para los eventos (precios) */
+.fc-daygrid-event {
+
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Estilo para días distintos */
+.fc-day-other {
+  background-color: #f8f9fa; /* Cambia el color de fondo para días que no pertenecen al mes actual */
+}
+
+.fc-view-harness {
+width: 100%; /* Establece el ancho al 100% del contenedor padre */
+}
+
+/* 
+td, th {
+padding: 8px; /* Ajusta el espaciado interno de las celdas 
+border: 1px solid #ddd; /* Añade un borde a las celdas 
+} 
+*/
+
+.calendario {
+display: flex;
+flex-wrap: wrap;
+}
+
+.dia {
+width: calc(100% / 7); /* Esto dividirá el ancho disponible en 7 partes iguales */
+box-sizing: border-box; /* Para que el ancho incluya el padding y el borde */
+border: 1px solid #ddd;
+padding: 10px;
+}
+
+.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
+width: calc(100% / 7); /* Divide el ancho en 7 partes iguales */
+box-sizing: border-box; /* Ajusta el ancho para incluir padding y border */
+}
+
+
+.fc-col-header-cell,
+.fc-daygrid-day-frame {
+width: 100px; /* Establece el ancho deseado */
+height: 100px; /* Establece la altura deseada */
+}
+
+/* Estilos para los elementos td */
+.fc-daygrid-day {
+width: 100px; /* Establece el ancho deseado */
+height: 100px; /* Establece la altura deseada */
+}
+
+.mt-3 {
+display: flex;
+justify-content: center; /* Centra horizontalmente */
+align-items: center; /* Centra verticalmente */
+margin-top: 3rem; /* Espacio superior */
+}
+
+/* Estilos para el precio */
+#total-precio {
+font-size: 1.5rem; /* Tamaño de fuente */
+}
+
+
+.fc-event-title {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.fc-daygrid-event-harness {
+    display: flex; /* Establece el contenedor como un flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100%; /* Ajusta la altura del contenedor para ocupar todo el espacio disponible */
+  }
+
+
+  .fc-daygrid-body {
+    width: 100%; /* Establecer el ancho al 100% */
+  }
+  
+  .fc-scrollgrid, .fc-scrollgrid-liquid-absolute {
+    overflow-x: auto; /* Agregar desplazamiento horizontal automático */
+  }
+  .fc-prev-button {
+    height: 20px;
+    width: 20px;
+  }
+  
+  .fc-next-button {
+    height: 20px;
+    width: 20px;
+  }
